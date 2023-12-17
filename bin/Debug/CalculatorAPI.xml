@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CalculatorAPI</name>
+    </assembly>
+    <members>
+        <member name="T:CalculatorAPI.Attributes.ValidateModelStateAttribute">
+            <summary>
+            Model state validation attribute
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Attributes.ValidateModelStateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Called before the action method is invoked
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:CalculatorAPI.Controllers.CalculatorApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Controllers.CalculatorApiController.#ctor(CalculatorAPI.Interfaces.ICalculator)">
+            <summary>
+            Calculator constructor with dependancy injection
+            </summary>
+            <param name="calculator"></param>
+        </member>
+        <member name="M:CalculatorAPI.Controllers.CalculatorApiController.CalculateNumbers(CalculatorAPI.Models.CalculatorRequest,System.String)">
+            <summary>
+            Calculate 2 Numbers
+            </summary>
+            <param name="body"></param>
+            <param name="_operator">The operator header (accepts only arithmetic signs( +, -, *, or /)</param>
+            <response code="200">Successfully calculated</response>
+            <response code="400">Bad request</response>
+            <response code="401">Unauthorized</response>
+        </member>
+        <member name="T:CalculatorAPI.Controllers.UserApiController">
+            <summary>
+            User Controller 
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Controllers.UserApiController.#ctor(CalculatorAPI.Interfaces.IUserService)">
+            <summary>
+            Injecting IuserIUserServiceService here
+            </summary>
+            <param name="service"></param>
+        </member>
+        <member name="M:CalculatorAPI.Controllers.UserApiController.LoginUser(CalculatorAPI.Models.User)">
+            <summary>
+            Login User user and returns JWT token
+            </summary>
+            <param name="user"></param>
+            <response code="200">Successful login</response>
+            <response code="400">Bad request</response>
+            <response code="401">Unauthorized</response>
+        </member>
+        <member name="T:CalculatorAPI.Filters.BasePathFilter">
+            <summary>
+            BasePath Document Filter sets BasePath property of Swagger and removes it from the individual URL paths
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Filters.BasePathFilter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="basePath">BasePath to remove from Operations</param>
+        </member>
+        <member name="P:CalculatorAPI.Filters.BasePathFilter.BasePath">
+            <summary>
+            Gets the BasePath of the Swagger Doc
+            </summary>
+            <returns>The BasePath of the Swagger Doc</returns>
+        </member>
+        <member name="M:CalculatorAPI.Filters.BasePathFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            Apply the filter
+            </summary>
+            <param name="swaggerDoc">OpenApiDocument</param>
+            <param name="context">FilterContext</param>
+        </member>
+        <member name="T:CalculatorAPI.Filters.GeneratePathParamsValidationFilter">
+            <summary>
+            Path Parameter Validation Rules Filter
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Filters.GeneratePathParamsValidationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="operation">Operation</param>
+            <param name="context">OperationFilterContext</param>
+        </member>
+        <member name="T:CalculatorAPI.Interfaces.ICalculator">
+            <summary>
+            Interfaces for calculation 
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Interfaces.ICalculator.Calculate(System.Double,System.Double,System.String)">
+            <summary>
+            calculates 2 numbers 
+            </summary>
+            <param name="number1"></param>
+            <param name="number2"></param>
+            <param name="operator"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CalculatorAPI.Interfaces.IUserService">
+            <summary>
+            interface for user operation
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Interfaces.IUserService.Login(System.String,System.String)">
+            <summary>
+            Login Process
+            </summary>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CalculatorAPI.Models.CalculatorRequest">
+            <summary>
+            Request object representing calculator input
+            </summary>
+        </member>
+        <member name="P:CalculatorAPI.Models.CalculatorRequest.Number1">
+            <summary>
+            The first number as a string (accepts positive or negative whole numbers)
+            </summary>
+            <value>The first number as a string (accepts positive or negative whole numbers)</value>
+        </member>
+        <member name="P:CalculatorAPI.Models.CalculatorRequest.Number2">
+            <summary>
+            The second number as a string (accepts positive or negative whole numbers)
+            </summary>
+            <value>The second number as a string (accepts positive or negative whole numbers)</value>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorRequest.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorRequest.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorRequest.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorRequest.Equals(CalculatorAPI.Models.CalculatorRequest)">
+            <summary>
+            Returns true if CalculatorRequest instances are equal
+            </summary>
+            <param name="other">Instance of CalculatorRequest to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorRequest.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:CalculatorAPI.Models.CalculatorResponse">
+            <summary>
+            Response object representing the calculator result
+            </summary>
+        </member>
+        <member name="P:CalculatorAPI.Models.CalculatorResponse.Result">
+            <summary>
+            The result of the calculation
+            </summary>
+            <value>The result of the calculation</value>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorResponse.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorResponse.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorResponse.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorResponse.Equals(CalculatorAPI.Models.CalculatorResponse)">
+            <summary>
+            Returns true if CalculatorResponse instances are equal
+            </summary>
+            <param name="other">Instance of CalculatorResponse to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.CalculatorResponse.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:CalculatorAPI.Models.User">
+            <summary>
+            Object representing a user
+            </summary>
+        </member>
+        <member name="P:CalculatorAPI.Models.User.Id">
+            <summary>
+            The user ID
+            </summary>
+            <value>The user ID</value>
+        </member>
+        <member name="P:CalculatorAPI.Models.User.UserName">
+            <summary>
+            user login name
+            </summary>
+            <value>user login name</value>
+        </member>
+        <member name="P:CalculatorAPI.Models.User.Password">
+            <summary>
+            user password
+            </summary>
+            <value>user password</value>
+        </member>
+        <member name="P:CalculatorAPI.Models.User.Role">
+            <summary>
+            the role of the user
+            </summary>
+            <value>the role of the user</value>
+        </member>
+        <member name="P:CalculatorAPI.Models.User.Token">
+            <summary>
+            the JWT token for the user
+            </summary>
+            <value>the JWT token for the user</value>
+        </member>
+        <member name="M:CalculatorAPI.Models.User.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.User.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.User.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.User.Equals(CalculatorAPI.Models.User)">
+            <summary>
+            Returns true if User instances are equal
+            </summary>
+            <param name="other">Instance of User to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:CalculatorAPI.Models.User.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="T:CalculatorAPI.Program">
+            <summary>
+            Program
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Program.Main(System.String[])">
+            <summary>
+            Main
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:CalculatorAPI.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Create the web host builder.
+            </summary>
+            <param name="args"></param>
+            <returns>IWebHostBuilder</returns>
+        </member>
+        <member name="T:CalculatorAPI.Services.CalculatorService">
+            <summary>
+            calculator service class for implementimg the interface
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Services.CalculatorService.Calculate(System.Double,System.Double,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="number1"></param>
+            <param name="number2"></param>
+            <param name="operator"></param>
+            <returns>result of calculation</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:CalculatorAPI.Services.UserService">
+            <summary>
+            User service to populate dummy data and handinling login operation
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Services.UserService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            inject iconfiguration for getting values from the appsetting file
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:CalculatorAPI.Services.UserService.Login(System.String,System.String)">
+            <summary>
+            Authenticates users
+            </summary>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <returns>JWT token</returns>
+        </member>
+        <member name="T:CalculatorAPI.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="M:CalculatorAPI.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:CalculatorAPI.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:CalculatorAPI.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+    </members>
+</doc>

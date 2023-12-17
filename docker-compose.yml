@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  calculatorapi:
+    image: ${DOCKER_REGISTRY-}calculatorapi
+    build:
+      context: .
+      dockerfile: src/CalculatorAPI/Dockerfile

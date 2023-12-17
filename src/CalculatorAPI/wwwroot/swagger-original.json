@@ -1,0 +1,163 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Calculator API",
+    "description" : "Calculator API in .NET 7 ",
+    "contact" : {
+      "name" : "Tesfay",
+      "email" : "tesfai80@hotmail.com"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/TESFAI80/CalculatorAPI/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "tags" : [ {
+    "name" : "Calculator",
+    "description" : "Operations related to the calculator"
+  }, {
+    "name" : "User",
+    "description" : "Operations related to user management"
+  } ],
+  "paths" : {
+    "/calculator" : {
+      "post" : {
+        "tags" : [ "Calculator" ],
+        "summary" : "Calculate 2 Numbers",
+        "operationId" : "clculateNumbers",
+        "parameters" : [ {
+          "name" : "operator",
+          "in" : "header",
+          "description" : "The operator header (accepts only arithmetic signs( +, -, *, or /)",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CalculatorRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successfully calculated",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CalculatorResponse"
+                },
+                "example" : {
+                  "result" : 4
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    },
+    "/user" : {
+      "post" : {
+        "tags" : [ "User" ],
+        "summary" : "Login User user and returns JWT token",
+        "operationId" : "loginUser",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful login"
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CalculatorRequest" : {
+        "required" : [ "number1", "number2" ],
+        "type" : "object",
+        "properties" : {
+          "number1" : {
+            "pattern" : "^[0-9]+(?:\\.[0-9]+)?$",
+            "type" : "string",
+            "description" : "The first number as a string (accepts positive or negative whole numbers)"
+          },
+          "number2" : {
+            "pattern" : "^[0-9]+(?:\\.[0-9]+)?$",
+            "type" : "string",
+            "description" : "The second number as a string (accepts positive or negative whole numbers)"
+          }
+        },
+        "description" : "Request object representing calculator input"
+      },
+      "CalculatorResponse" : {
+        "type" : "object",
+        "properties" : {
+          "result" : {
+            "type" : "number",
+            "description" : "The result of the calculation"
+          }
+        },
+        "description" : "Response object representing the calculator result",
+        "example" : {
+          "result" : 4
+        }
+      },
+      "User" : {
+        "required" : [ "password", "userName" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "description" : "The user ID"
+          },
+          "userName" : {
+            "type" : "string",
+            "description" : "user login name"
+          },
+          "password" : {
+            "type" : "string",
+            "description" : "user password"
+          },
+          "role" : {
+            "type" : "string",
+            "description" : "the role of the user"
+          },
+          "token" : {
+            "type" : "string",
+            "description" : "the JWT token for the user"
+          }
+        },
+        "description" : "Object representing a user"
+      }
+    }
+  }
+}
